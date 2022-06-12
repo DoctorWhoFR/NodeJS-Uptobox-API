@@ -112,6 +112,8 @@ async function uploadFile(uploadLink,filePath, fileName){
     let formData = new FormData();
     formData.append('files[]', fs.createReadStream(filePath), {filename: fileName});
     const upload = await axios({
+        maxContentLength: Infinity,
+        maxBodyLength: Infinity,
         method: 'POST',
         url: 'https:' +uploadLink,
         data:formData,
